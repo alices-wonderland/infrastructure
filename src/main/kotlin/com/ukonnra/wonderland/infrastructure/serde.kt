@@ -9,7 +9,8 @@ import com.fasterxml.jackson.databind.ser.std.StdScalarSerializer
 import org.springframework.http.HttpStatus
 
 object HttpStatusSerializer : StdScalarSerializer<HttpStatus>(HttpStatus::class.java) {
-  override fun serialize(value: HttpStatus, gen: JsonGenerator, provider: SerializerProvider) = gen.writeNumber(value.value())
+  override fun serialize(value: HttpStatus, gen: JsonGenerator, provider: SerializerProvider) =
+    gen.writeNumber(value.value())
 }
 
 object HttpStatusDeserializer : StdScalarDeserializer<HttpStatus>(HttpStatus::class.java) {

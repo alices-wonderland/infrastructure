@@ -22,6 +22,7 @@ interface ViewStore<A : Aggregate<ID>, ID : Identifier<ID>> {
   val viewInterceptors: List<ViewInterceptor<ID>>
 
   suspend fun doGetAll(filterObject: Map<String, Any>, cursorField: String): List<CursorEdge<A, ID>>
+  @Suppress("LongParameterList")
   suspend fun constructFilterObject(
     queryMode: QueryMode,
     filter: Filter,
@@ -69,6 +70,7 @@ interface ViewStore<A : Aggregate<ID>, ID : Identifier<ID>> {
     }
   }
 
+  @Suppress("LongParameterList")
   suspend fun getAllWithInterceptors(
     queryMode: QueryMode,
     filter: Filter,
