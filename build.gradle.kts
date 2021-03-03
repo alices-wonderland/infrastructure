@@ -2,6 +2,7 @@ plugins {
   idea
   java
   jacoco
+  maven
 
   id("org.jlleitschuh.gradle.ktlint") version "10.0.0"
   id("io.gitlab.arturbosch.detekt") version "1.16.0-RC2"
@@ -96,4 +97,30 @@ tasks.bootJar {
 
 tasks.jar {
   enabled = true
+}
+
+java {
+  sourceCompatibility = JavaVersion.VERSION_11
+  targetCompatibility = JavaVersion.VERSION_11
+
+  withSourcesJar()
+  withJavadocJar()
+}
+
+tasks.install {
+  repositories.withConvention(MavenRepositoryHandlerConvention::class) {
+    mavenInstaller {
+      pom.project {
+        withGroovyBuilder {
+          "licenses" {
+            "license" {
+              "name"("The Apache Software License, Version 2.0")
+              "url"("http://www.apache.org/licenses/LICENSE-2.0.txt")
+              "distribution"("repo")
+            }
+          }
+        }
+      }
+    }
+  }
 }
