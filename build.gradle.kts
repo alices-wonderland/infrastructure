@@ -16,6 +16,8 @@ plugins {
 
 object Versions {
   const val JAVA = "11"
+
+  const val GUAVA = "30.1-jre"
 }
 
 group = "com.ukonnra.wonderland"
@@ -84,6 +86,7 @@ dependencies {
   implementation("org.jetbrains.kotlin:kotlin-reflect")
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
+  api("com.google.guava:guava:${Versions.GUAVA}")
   implementation("io.projectreactor:reactor-core")
 
   implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
