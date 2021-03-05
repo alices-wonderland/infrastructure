@@ -1,2 +1,5 @@
 jdk:
   - openjdk11
+install:
+  - echo "Building Infrastructure"
+  - ./gradlew clean build publishReleasePublicationToMavenLocal

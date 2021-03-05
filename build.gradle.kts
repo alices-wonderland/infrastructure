@@ -2,7 +2,7 @@ plugins {
   idea
   java
   jacoco
-  maven
+  `maven-publish`
 
   id("org.jlleitschuh.gradle.ktlint") version "10.0.0"
   id("io.gitlab.arturbosch.detekt") version "1.16.0-RC2"
@@ -110,19 +110,13 @@ java {
   withJavadocJar()
 }
 
-tasks.install {
-  repositories.withConvention(MavenRepositoryHandlerConvention::class) {
-    mavenInstaller {
-      pom.project {
-        withGroovyBuilder {
-          "licenses" {
-            "license" {
-              "name"("The Apache Software License, Version 2.0")
-              "url"("http://www.apache.org/licenses/LICENSE-2.0.txt")
-              "distribution"("repo")
-            }
-          }
-        }
+publishing.publications.register("release", MavenPublication::class) {
+  from(components["java"])
+  pom {
+    licenses {
+      license {
+        name.set("The Apache License, Version 2.0")
+        url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
       }
     }
   }
