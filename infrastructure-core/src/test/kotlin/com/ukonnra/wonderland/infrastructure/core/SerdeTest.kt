@@ -1,16 +1,14 @@
 package com.ukonnra.wonderland.infrastructure.core
 
-import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
 import com.ukonnra.wonderland.infrastructure.core.error.ExternalError
 import com.ukonnra.wonderland.infrastructure.core.error.WonderlandError
-import org.junit.jupiter.api.Assertions
+import com.ukonnra.wonderland.infrastructure.testsuite.serdeCheck
 import org.junit.jupiter.api.Test
 
 class SerdeTest {
   @Test
   fun testExternalError() {
-    doCheck(
+    serdeCheck(
       ExternalError(
         "error-code",
         mapOf("field-1" to "value-1", "field-2" to mapOf("meta-1" to "meta-1.1"), "field-3" to 100)
@@ -66,16 +64,7 @@ class SerdeTest {
     )
 
     for ((expected, value) in values) {
-      doCheck(value, expected)
+      serdeCheck(value, expected)
     }
   }
-}
-
-private inline fun <reified T> doCheck(value: T, expected: String) {
-  val jsonMap = jacksonObjectMapper().convertValue(value, jacksonTypeRef<Map<String, Any>>())
-  val expectedMap = jacksonObjectMapper().readValue(expected, jacksonTypeRef<Map<String, Any>>())
-  Assertions.assertEquals(expectedMap, jsonMap)
-
-  val obj: T = jacksonObjectMapper().convertValue(jsonMap, jacksonTypeRef())
-  Assertions.assertEquals(value, obj)
 }

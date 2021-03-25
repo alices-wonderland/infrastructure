@@ -1,5 +1,7 @@
 jdk:
   - openjdk11
 install:
-  - echo "Building Infrastructure"
-  - ./gradlew clean build publishReleasePublicationToMavenLocal
+  - echo "Building Infrastructure Core"
+  - ./gradlew clean :infrastructure-core:build :infrastructure-core:publishReleasePublicationToMavenLocal
+  - echo "Building Infrastructure TestSuite"
+  - ./gradlew clean :infrastructure-testsuite:build :infrastructure-testsuite:publishReleasePublicationToMavenLocal
