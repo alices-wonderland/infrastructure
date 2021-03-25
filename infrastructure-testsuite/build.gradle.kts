@@ -1,3 +1,3 @@
 dependencies {
-  implementation("org.springframework.boot:spring-boot-starter-test")
+  implementation("org.junit.jupiter:junit-jupiter-api")
 }

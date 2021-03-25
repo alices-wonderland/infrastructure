@@ -8,10 +8,6 @@ plugins {
   id("io.gitlab.arturbosch.detekt") version "1.16.0"
   id("com.github.ben-manes.versions") version "0.38.0"
   kotlin("jvm") version "1.4.31"
-
-  id("org.springframework.boot") version "2.5.0-M3"
-  id("io.spring.dependency-management") version "1.0.11.RELEASE"
-  kotlin("plugin.spring") version "1.4.31"
 }
 
 object Versions {
@@ -36,8 +32,6 @@ allprojects {
     jcenter()
     mavenLocal()
     mavenCentral()
-    maven { url = uri("https://repo.spring.io/milestone") }
-    maven { url = uri("https://repo.spring.io/snapshot") }
   }
 
   ktlint {
@@ -71,21 +65,19 @@ allprojects {
 }
 
 subprojects {
-  apply(plugin = "org.springframework.boot")
-  apply(plugin = "org.jetbrains.kotlin.plugin.spring")
-  apply(plugin = "io.spring.dependency-management")
-
   apply(plugin = "maven-publish")
 
   dependencies {
+    implementation(platform("org.junit:junit-bom:5.8.0-M1"))
+    implementation(platform("com.fasterxml.jackson:jackson-bom:2.12.2"))
+
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-  }
 
-  tasks.bootJar {
-    enabled = false
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+    testImplementation("org.junit.jupiter:junit-jupiter-api")
   }
 
   tasks.jar {

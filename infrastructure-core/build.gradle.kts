@@ -3,11 +3,13 @@ object Versions {
 }
 
 dependencies {
-  implementation("org.springframework.boot:spring-boot-starter")
+  implementation(platform("org.springframework:spring-framework-bom:5.3.5"))
+  implementation(platform("io.projectreactor:reactor-bom:2020.0.5"))
+
   implementation("org.springframework:spring-web")
+
   implementation("com.google.guava:guava:${Versions.GUAVA}")
   implementation("io.projectreactor:reactor-core")
 
   testImplementation(project(":infrastructure-testsuite"))
-  testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
