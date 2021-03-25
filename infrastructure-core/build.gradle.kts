@@ -3,8 +3,8 @@ object Versions {
 }
 
 dependencies {
-  implementation(platform("org.springframework:spring-framework-bom:5.3.5"))
-  implementation(platform("io.projectreactor:reactor-bom:2020.0.5"))
+  api(platform("org.springframework:spring-framework-bom:5.3.5"))
+  api(platform("io.projectreactor:reactor-bom:2020.0.5"))
 
   implementation("org.springframework:spring-web")
 

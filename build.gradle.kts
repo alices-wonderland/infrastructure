@@ -68,8 +68,8 @@ subprojects {
   apply(plugin = "maven-publish")
 
   dependencies {
-    implementation(platform("org.junit:junit-bom:5.8.0-M1"))
-    implementation(platform("com.fasterxml.jackson:jackson-bom:2.12.2"))
+    api(platform("org.junit:junit-bom:5.8.0-M1"))
+    api(platform("com.fasterxml.jackson:jackson-bom:2.12.2"))
 
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
