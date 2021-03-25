@@ -12,6 +12,9 @@ plugins {
 
 object Versions {
   const val JAVA = "11"
+
+  const val JACKSON = "2.12.2"
+  const val JUNIT = "5.8.0-M1"
 }
 
 allprojects {
@@ -29,6 +32,7 @@ allprojects {
   version = "0.0.1-SNAPSHOT"
 
   repositories {
+    // detekt needs it
     jcenter()
     mavenLocal()
     mavenCentral()
@@ -68,16 +72,13 @@ subprojects {
   apply(plugin = "maven-publish")
 
   dependencies {
-    api(platform("org.junit:junit-bom:5.8.0-M1"))
-    api(platform("com.fasterxml.jackson:jackson-bom:2.12.2"))
-
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${Versions.JACKSON}")
 
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
-    testImplementation("org.junit.jupiter:junit-jupiter-api")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${Versions.JUNIT}")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:${Versions.JUNIT}")
   }
 
   tasks.jar {
