@@ -1,14 +1,20 @@
 package com.ukonnra.wonderland.infrastructure.core
 
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.ukonnra.wonderland.infrastructure.core.error.ExternalError
 import com.ukonnra.wonderland.infrastructure.core.error.WonderlandError
-import com.ukonnra.wonderland.infrastructure.testsuite.serdeCheck
+import com.ukonnra.wonderland.infrastructure.testsuite.SerdeTester
+import com.ukonnra.wonderland.infrastructure.testsuite.check
 import org.junit.jupiter.api.Test
 
-class SerdeTest {
+class SerdeTest : SerdeTester {
+  override val mapper: ObjectMapper
+    get() = jacksonObjectMapper()
+
   @Test
   fun testExternalError() {
-    serdeCheck(
+    check(
       ExternalError(
         "error-code",
         mapOf("field-1" to "value-1", "field-2" to mapOf("meta-1" to "meta-1.1"), "field-3" to 100)
@@ -64,7 +70,7 @@ class SerdeTest {
     )
 
     for ((expected, value) in values) {
-      serdeCheck(value, expected)
+      check(value, expected)
     }
   }
 }
