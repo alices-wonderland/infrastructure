@@ -76,6 +76,7 @@ subprojects {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${Versions.JACKSON}")
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:${Versions.JACKSON}")
 
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${Versions.JUNIT}")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${Versions.JUNIT}")
