@@ -13,4 +13,5 @@ data class ExternalError(
   @JsonSerialize(using = HttpStatusSerializer::class)
   @JsonDeserialize(using = HttpStatusDeserializer::class)
   override val statusCode: HttpStatus = HttpStatus.BAD_REQUEST,
-) : AbstractError(message)
+  override val cause: Throwable? = null,
+) : AbstractError(message, cause)

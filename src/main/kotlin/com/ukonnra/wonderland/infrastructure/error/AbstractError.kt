@@ -8,7 +8,8 @@ import com.ukonnra.wonderland.infrastructure.HttpStatusSerializer
 import org.springframework.http.HttpStatus
 
 @JsonIgnoreProperties("cause", "stackTrace", "suppressed", "localizedMessage")
-abstract class AbstractError(override val message: String) : RuntimeException(message) {
+abstract class AbstractError(override val message: String, override val cause: Throwable?) : RuntimeException
+  (message, cause) {
   @JsonSerialize(using = HttpStatusSerializer::class)
   @JsonDeserialize(using = HttpStatusDeserializer::class)
   open val statusCode: HttpStatus = HttpStatus.BAD_REQUEST
