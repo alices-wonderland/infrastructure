@@ -90,6 +90,7 @@ subprojects {
 
   tasks.jar {
     enabled = true
+    archiveClassifier.set("")
   }
 
   java {
