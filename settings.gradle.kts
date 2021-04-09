@@ -2,5 +2,6 @@ rootProject.name = "infrastructure"
 
 include(
   ":infrastructure-core",
-  ":infrastructure-testsuite"
+  ":infrastructure-testsuite",
+  ":wonderland-project-gradle-plugin"
 )

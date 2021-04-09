@@ -5,3 +5,5 @@ install:
   - ./gradlew :infrastructure-core:build :infrastructure-core:publishReleasePublicationToMavenLocal
   - echo "Building Infrastructure TestSuite"
   - ./gradlew :infrastructure-testsuite:build :infrastructure-testsuite:publishReleasePublicationToMavenLocal
+  - echo "Building Wonderland Project Gradle Plugin"
+  - ./gradlew :wonderland-project-gradle-plugin:build :wonderland-project-gradle-plugin:publishReleasePublicationToMavenLocal

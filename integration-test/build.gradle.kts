@@ -1,0 +1,4 @@
+plugins {
+  java
+  id("com.ukonnra.wonderland.project") version "0.0.1-SNAPSHOT"
+}
