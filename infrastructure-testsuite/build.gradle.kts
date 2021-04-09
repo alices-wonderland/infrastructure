@@ -1,3 +1,7 @@
+object Versions {
+  const val JUNIT = "5.8.0-M1"
+}
+
 dependencies {
-  implementation("org.springframework.boot:spring-boot-starter-test")
+  implementation("org.junit.jupiter:junit-jupiter-api:${Versions.JUNIT}")
 }

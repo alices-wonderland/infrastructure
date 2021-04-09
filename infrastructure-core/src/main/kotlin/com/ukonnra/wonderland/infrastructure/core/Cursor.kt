@@ -7,7 +7,6 @@ import com.fasterxml.jackson.core.JsonProcessingException
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonTypeRef
 import com.ukonnra.wonderland.infrastructure.core.error.WonderlandError
-import org.apache.logging.log4j.LogManager
 import java.nio.charset.StandardCharsets
 import java.time.Instant
 import java.util.Base64
@@ -44,14 +43,11 @@ sealed class Cursor {
   }
 
   companion object {
-    private val LOGGER = LogManager.getLogger(Cursor::class.java)
-
     fun decode(mapper: ObjectMapper, value: String): Cursor = try {
       val jsonString = Base64.getUrlDecoder().decode(value).toString(StandardCharsets.UTF_8)
       mapper.readValue(jsonString, jacksonTypeRef())
     } catch (e: JsonProcessingException) {
-      LOGGER.error("{}", e.message, e)
-      throw WonderlandError.InvalidCursor(value)
+      throw WonderlandError.InvalidCursor(value, e)
     }
   }
 
